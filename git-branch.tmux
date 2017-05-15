@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${CURRENT_DIR}/scripts/helpers.sh"
+source "${source_path}/scripts/helpers.sh"
 
 do_interpolation() {
 	local string="$1"

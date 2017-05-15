@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-branch_name="$(cd `tmux display-message -p -F '#{pane_current_path}'` \
-  && git rev-parse --abbrev-ref HEAD)"
-if [ ! -z ${branch_name} ]; then
-  printf %s "[${branch_name}]"
-fi
-unset branch_name
+get_branch_name() {
+	local path="$(tmux display-message -p -F '#{pane_current_path}')"
+	local branch_name="$(cd ${path} && git rev-parse --abbrev-ref HEAD)"
+	[[ -n ${branch_name} ]] && echo "${branch_name}"
+}
+
+get_branch_name
